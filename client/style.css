@@ -1,0 +1,44 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: rgb(34, 41, 65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#chat {
+  width: 50vw;
+  height: 70vh;
+  border: rgb(196, 188, 226) dashed 0.5rem;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+#form {
+  margin: 0.5rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#input {
+  background-color: rgb(213, 205, 237);
+  border-radius: 24px;
+  padding: 1rem;
+  font-size: 1rem;
+  box-sizing: border-box;
+  width: 80%;
+}
+
+button {
+  background-color: rgb(131, 106, 198);
+  border-radius: 24px;
+  font-size: 1rem;
+  padding: 1rem;
+}
