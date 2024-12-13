@@ -12,17 +12,24 @@
     <section id="chat">
         <ul id="messages"></ul>
         <form id="form">
-            <textarea id="input" type="text" name="message" placeholder="Escribe aquí..." autocomplete="off"></textarea>
+            <textarea id="input" name="message" placeholder="Escribe aquí..." autocomplete="off"></textarea>
+            <button id="emoji-button" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="24" height="24"
+                    stroke-width="2" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M15.182 15.182a4.5 4.5 0 0 1-6.364 0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Z" />
+                </svg>
+            </button>
             <button id="button" type="submit">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"
-                    style="--darkreader-inline-stroke: currentColor;" data-darkreader-inline-stroke="">
+                    stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2">
                     <path d="M12 18h-7a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v7.5"></path>
                     <path d="M3 6l9 6l9 -6"></path>
                     <path d="M15 18h6"></path>
                     <path d="M18 15l3 3l-3 3"></path>
                 </svg>
             </button>
+
         </form>
     </section>
     <script src="./script.js" type="module"></script>
