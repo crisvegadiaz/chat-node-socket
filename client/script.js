@@ -1,7 +1,11 @@
 import { io } from "https://cdn.socket.io/4.3.2/socket.io.esm.min.js";
 import { EmojiButton } from "https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@4.6.4/dist/index.min.js";
 
-const socket = io();
+const socket = io({
+  auth:{
+    serverOffset:0
+  }
+});
 
 const chat = document.querySelector(".chat");
 const form = document.getElementById("form");
@@ -10,12 +14,30 @@ const messages = document.getElementById("messages");
 const emojiButton = document.getElementById("emoji-button");
 const windowButton = document.getElementById("fullscreen-button");
 
+
+function getOS() {
+  const userAgent = navigator.userAgent;
+
+  if (userAgent.indexOf("Android") !== -1) return "Android"; // Verificar Android primero
+  if (userAgent.indexOf("like Mac") !== -1) return "iOS";
+  if (userAgent.indexOf("Win") !== -1) return "Windows";
+  if (userAgent.indexOf("Mac") !== -1) return "MacOS";
+  if (userAgent.indexOf("X11") !== -1 || userAgent.indexOf("Linux") !== -1) return "Linux";
+
+  return "Unknown OS";
+}
+
 // Configurar Emoji Button
 const picker = new EmojiButton({
-  theme: "dark",
   emojiSize: "34px",
   emojisPerRow: 5,
   rows: 5,
+  autoHide: false,
+  styleProperties: {
+    '--background-color': '#1b1b3a',
+    '--category-button-color': '#99AABB',
+    '--text-color':'#fff'
+  }
 });
 
 emojiButton.addEventListener("click", () => {
@@ -35,21 +57,26 @@ input.addEventListener("input", (event) => {
 });
 
 input.addEventListener("focus", () => {
-  chat.classList.add("chat-adjusted");
+  if(getOS() == "Android" || getOS() == "iOS"){
+    chat.classList.add("chat-adjusted");
+  }
 });
 
 input.addEventListener("blur", () => {
-  setTimeout(() => {
-    chat.classList.remove("chat-adjusted");
-  }, 100);
+  if(getOS() == "Android" || getOS() == "iOS"){
+    setTimeout(() => {
+      chat.classList.remove("chat-adjusted");
+    }, 100);
+  }
 });
 
-
 // Recibir mensajes desde el servidor
-socket.on("chat message", (msg) => {
+socket.on("chat message", (msg, serverOffset) => {
   const item = document.createElement("li");
   item.textContent = msg;
   messages.appendChild(item);
+  socket.auth.serverOffset = serverOffset;
+
   messages.scrollTop = messages.scrollHeight;
   input.placeholder = "Escribe aquí...";
   input.classList.remove("input-error")
